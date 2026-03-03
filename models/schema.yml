@@ -1,0 +1,33 @@
+version: 2
+
+models:
+  - name: stg_thechos_mxd
+    description: Stage de hechos MexDer.
+    columns:
+      - name: id_hecho
+        tests:
+          - not_null
+
+  - name: stg_tsplits
+    description: Stage de splits.
+    columns:
+      - name: id_split
+        tests:
+          - not_null
+          - unique
+
+  - name: int_md_hechos_diario_base
+    description: Transformacion base equivalente al insert principal de MD_HECHOS_DIARIO.
+    columns:
+      - name: id_folio
+        tests:
+          - not_null
+
+  - name: fct_md_hechos_hist
+    description: Registros historicos incluidos por regla de negocio.
+
+  - name: fct_md_hechos_excluidos_hist
+    description: Registros historicos excluidos por tipo_instrumento/difundir_terminal_espera.
+
+  - name: fct_md_hechos_cancelados_hist
+    description: Registros cancelados por estado_monet.
