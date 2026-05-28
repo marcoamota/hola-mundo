@@ -11,8 +11,8 @@ sources:
             description: "Fehca de la compra del auto"
           - name: SALESPERSON
             description: "Nombre del vendedor del auto"
-            tests:
-              - not_null              
+            data_tests:
+              - not_null
           - name: CUSTOMERNAME
             description: "Nombre del cliente que compro el auto"
           - name: CARMAKE
@@ -26,4 +26,4 @@ sources:
           - name: COMMISSIONRATE
             description: "% de comisión del vendedor"
           - name: COMMISSIONEARNED
-            description: "Valor $ de la comisión del vendedor"  
+            description: "Valor $ de la comisión del vendedor"

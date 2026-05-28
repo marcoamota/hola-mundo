@@ -4,52 +4,54 @@ models:
   - name: dim_carmake
     description: "Dimensión de Marcas de Vehículos. Contiene un clave unica para cada marca"
     columns:
-      - name: ID_CARMAKE,
+      - name: ID_CARMAKE
         description: "Clave subrogada única para cada marca de vehículo"
-        tests:
+        data_tests:
           - unique
           - not_null
-      - name: CARMAKE,
+      - name: CARMAKE
         description: "Nombre de la marca del vehiculo"
-        tests:          
+        data_tests:          
           - not_null  
 
   - name: dim_salesperson
     description: "Dimensión de Vendedores. Contiene un clave unica para cada vendedor."
     columns:
-      - name: ID_SALESPERSON,
+      - name: ID_SALESPERSON
         description: "Clave subrogada única para cada vendedor"
-        tests:
+        data_tests:
           - unique
           - not_null
-      - name: SALESPENSON,
+      - name: SALESPERSON
         description: "Nombre del vendedor"
-        tests:          
+        data_tests:          
           - not_null   
 
   - name: fct_montly_sales
     description: "Tabla de hechos que consolida las ventas mensuales agregadas por vendedor y marca de vehiculo utilizando claves de dimensión"
     columns:
-      - name: DDATE,
+      - name: DDATE
         description: "Mes de la venta (primer día del mes)."
-        tests:          
+        data_tests:          
           - not_null  
 
       - name: ID_SALESPERSON
         description: "Clave foránea a la dimensión de vendedores (dim_salesperson)"
-        tests:
+        data_tests:
           - not_null
           - relationships:
-              to: ref('dim_salesperson')
-              field: ID_SALESPERSON
+              arguments: 
+                to: ref('dim_salesperson')
+                field: ID_SALESPERSON
 
       - name: ID_CARMAKE
         description: "Clave foránea a la dimensión de marcas (dim_carmake)"
         tests:
           - not_null
           - relationships:
-              to: ref('dim_carmake')
-              field: ID_CARMAKE
+              arguments: 
+                to: ref('dim_carmake')
+                field: ID_CARMAKE
       
       - name: TOTAL_SALE
         description: "Monto total de la venta neta para ese mes, vendedor y marca" 
